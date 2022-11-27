@@ -1,3 +1,4 @@
+"use strict"
 const container = document.querySelector(".container");
 const popupAdd = document.querySelector(".popup-add");
 const addForm = document.forms.addForm;
@@ -62,12 +63,12 @@ const createCard = function(cat, parent) {
 
     const del = document.createElement("button");
 	del.className = "del_btn"
-    del.innerHTML = `<i class="fas fa-light fa-trash"></i>`;
+    del.innerHTML = `<i data-action="delete" class="fas fa-light fa-trash"></i>`;
 	del.setAttribute("data-action", "delete");
 
 	const edit = document.createElement("button");
 	edit.className = "edit_btn"
-    edit.innerHTML = `<i class="fas fa-light fa-pen"></i>`;
+    edit.innerHTML = `<i data-action="edit" class="fas fa-light fa-pen"></i>`;
 	edit.setAttribute("data-action", "edit");
 
 	const cardContent = document.createElement("div");
@@ -82,15 +83,29 @@ container.addEventListener("click", function(e){
 	const card = e.target.closest('[data-card_id]');
 	const cardId = card.dataset.card_id;
 
-	if(e.target.parentElement.dataset.action === "delete"){
-		deleteCat(cardId, card);
-	} else if(e.target.parentElement.dataset.action === "edit"){
-		popupEdit.classList.add("active");
-		editForm.setAttribute("data-id", cardId);
-	 	showEditForm(cardId);
-	} else if(e.target.dataset.action = "open"){ 
-		openModelCard(cardId);
-	}
+	switch (e.target.dataset.action) {
+		case "delete":
+			deleteCat(cardId, card);
+			break;
+		case "edit":
+			popupEdit.classList.add("active");
+			editForm.setAttribute("data-id", cardId);
+			showEditForm(cardId);
+			break;
+		default:
+			openModelCard(cardId);
+			break;
+	}	
+	// if(e.target.parentElement.dataset.action === "delete"){
+	// 	deleteCat(cardId, card);
+	// } else if(e.target.parentElement.dataset.action === "edit"){
+	// 	popupEdit.classList.add("active");
+	// 	editForm.setAttribute("data-id", cardId);
+	//  	showEditForm(cardId);
+	// }
+	// if(e.target.dataset.action = "open"){ 
+	// 	openModelCard(cardId);
+	// }
 })
 
 const setCards = function(arr) {
