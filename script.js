@@ -43,6 +43,7 @@ const createCard = function(cat, parent) {
 
 	const img = document.createElement("div");
 	img.className = "card_img";
+	img.setAttribute("data-action", "open");
 	if (cat.img_link) {
 		img.style.backgroundImage = `url(${cat.img_link})`;
 	} else {
@@ -57,9 +58,7 @@ const createCard = function(cat, parent) {
 
 	const name = document.createElement("h3");
 	name.innerText = cat.name;
-
-	const discr = document.createElement("p");
-	discr.innerText = cat.discription;
+	name.setAttribute("data-action", "open");
 
     const del = document.createElement("button");
 	del.className = "del_btn"
@@ -73,39 +72,25 @@ const createCard = function(cat, parent) {
 
 	const cardContent = document.createElement("div");
 	cardContent.className = "card-content";
-	card.append(img, cardContent)
+
 	cardContent.append(name, del, edit)
+	card.append(img, cardContent)
 	parent.append(card);
 }
 
 container.addEventListener("click", function(e){
-	console.dir(e.target)
 	const card = e.target.closest('[data-card_id]');
 	const cardId = card.dataset.card_id;
 
-	switch (e.target.parentElement.dataset.action) {
-		case "delete":
-			deleteCat(cardId, card);
-			break;
-		case "edit":
-			popupEdit.classList.add("active");
-			editForm.setAttribute("data-id", cardId);
-		 	showEditForm(cardId);
-			break;
-		default:
-			openModelCard(cardId);
-			break;
+	if(e.target.parentElement.dataset.action === "delete"){
+		deleteCat(cardId, card);
+	} else if(e.target.parentElement.dataset.action === "edit"){
+		popupEdit.classList.add("active");
+		editForm.setAttribute("data-id", cardId);
+	 	showEditForm(cardId);
+	} else if(e.target.dataset.action = "open"){ 
+		openModelCard(cardId);
 	}
-
-	// if(e.target.parentElement.dataset.action === "delete"){
-	// 	deleteCat(cardId, card);
-	// } else if(e.target.parentElement.dataset.action === "edit"){
-	// 	popupEdit.classList.add("active");
-	// 	editForm.setAttribute("data-id", cardId);
-	//  	showEditForm(cardId);
-	// } else if(e.target.offsetParent === "card"){ 
-	// 	openModelCard(cardId);
-	// }
 })
 
 const setCards = function(arr) {
