@@ -82,20 +82,30 @@ container.addEventListener("click", function(e){
 	console.dir(e.target)
 	const card = e.target.closest('[data-card_id]');
 	const cardId = card.dataset.card_id;
-	if(e.target.parentElement.dataset.action === "delete"){
-		deleteCat(cardId, card);
-	} else if(e.target.parentElement.dataset.action === "edit"){
-		popupEdit.classList.add("active");
-		editForm.setAttribute("data-id", cardId);
-	 	showEditForm(cardId);
-	} 
-	// else if(e.target.dataset.action === "favourite"){
-	// 	if(e.target.className("false"))
 
-	// } 
-	else { 
-		openModelCard(cardId);
+	switch (e.target.parentElement.dataset.action) {
+		case "delete":
+			deleteCat(cardId, card);
+			break;
+		case "edit":
+			popupEdit.classList.add("active");
+			editForm.setAttribute("data-id", cardId);
+		 	showEditForm(cardId);
+			break;
+		default:
+			openModelCard(cardId);
+			break;
 	}
+
+	// if(e.target.parentElement.dataset.action === "delete"){
+	// 	deleteCat(cardId, card);
+	// } else if(e.target.parentElement.dataset.action === "edit"){
+	// 	popupEdit.classList.add("active");
+	// 	editForm.setAttribute("data-id", cardId);
+	//  	showEditForm(cardId);
+	// } else if(e.target.offsetParent === "card"){ 
+	// 	openModelCard(cardId);
+	// }
 })
 
 const setCards = function(arr) {
