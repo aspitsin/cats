@@ -46,7 +46,7 @@ const createCard = function(cat, parent) {
 	if (cat.img_link) {
 		img.style.backgroundImage = `url(${cat.img_link})`;
 	} else {
-		img.style.backgroundImage = "url(img/cat.png)";
+		img.style.backgroundImage = "url(https://otvet.imgsmail.ru/download/875a8375f91de049494d6073098e8a2f_7fc8313f32a9e3a53a18cf8676891956.jpg)";
 		img.style.backgroundSize = "contain";
 		img.style.backgroundColor = "transparent";
 	}
