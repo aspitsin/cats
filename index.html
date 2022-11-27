@@ -28,10 +28,8 @@
         <div class="popup popup-add">
             <div class="popup_content">
                 <form id="addForm">
-                    <div class="addForm_header">
-                        <h2>Добавать котика</h2>
-                        <i class="far fa-times-circle popup_close"></i>
-                    </div>
+                    <i class="far fa-times-circle popup_close"></i>
+                    <h2>Добавать котика</h2>
                     <input type="text" name="name" placeholder="Имя" required>
                     <input type="number" name="id" placeholder="Айди" min="0" value="" disabled> 
                     <input type="text" name="img_link" placeholder="Ссылка">
@@ -41,7 +39,7 @@
                         <input type="checkbox" name="favourite">
                         Любимчик
                     </label>
-                    <textarea name="description" placeholder="Описание"></textarea>
+                    <textarea name="description" placeholder="Описание" ></textarea>
                     <button class="form_submit" type="submit">Добавить</button>
                 </form>
             </div>
@@ -49,10 +47,8 @@
         <div class="popup popup-edit">
             <div class="popup_content">
                 <form id="editForm">
-                    <div class="updForm_header">
-                        <h2>Изменить котика</h2>
-                        <i class="far fa-times-circle popup_close"></i>
-                    </div>
+                    <i class="far fa-times-circle popup_close"></i>
+                    <h2>Изменить котика</h2>
                     <input type="text" name="name" placeholder="Имя" required>
                     <input type="number" name="id" placeholder="Айди" min="0" disabled> 
                     <input type="text" name="img_link" placeholder="Ссылка">
@@ -62,8 +58,8 @@
                         <input type="checkbox" name="favourite">
                         Любимчик
                     </label>
-                    <textarea name="description" placeholder="Описание"></textarea>
-                    <button class="form_submit" type="submit">Добавить</button>
+                    <textarea name="description" placeholder="Описание" ></textarea>
+                    <button class="form_submit" type="submit">Изменить</button>
                 </form>
             </div>
         </div>

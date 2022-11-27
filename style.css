@@ -10,6 +10,10 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #fff;
 }
+h2 {
+    margin: 10px 0;
+    padding-left: 5px;
+}
 
 .header-container {
     padding: 20px;
@@ -125,12 +129,12 @@ body {
 
 
 .popup_content {
-    width: 300px;
-    padding: 20px;
+    width: 360px;
+    padding: 16px;
     background-color: white;
     position: relative;
     border-radius: 10px;
-    
+    position: relative;
 }
 
 #addForm, #editForm {
@@ -139,11 +143,13 @@ body {
     gap: 20px;
 }
 
-.addForm_header, .updForm_header {
+
+
+/* .addForm_header, .updForm_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 .modal-wrapper {
     position: fixed;
@@ -164,7 +170,7 @@ body {
 
 .modal_card {
     width: 600px;
-    height: 300px;
+    min-height: 300px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     position: relative;
@@ -215,18 +221,26 @@ form input:disabled{
 
 form textarea {
     font-size: 18px;
-    height: 50px;
+    height: 100px;
     padding: 0 10px 0 10px;
     border-radius: 15px;
     border: none;
 }
 
+form textarea::placeholder {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
 form .popup_close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
     font-size: 20px;
 }
 
 .form_submit {
-    font-family: 'Raleway', sans-serif;
     font-size: 15px;
     color: #fff;
     background-color: #23a030;
