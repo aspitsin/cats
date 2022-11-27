@@ -83,29 +83,13 @@ container.addEventListener("click", function(e){
 	const card = e.target.closest('[data-card_id]');
 	const cardId = card.dataset.card_id;
 
-	switch (e.target.dataset.action) {
-		case "delete":
-			deleteCat(cardId, card);
-			break;
-		case "edit":
-			popupEdit.classList.add("active");
-			editForm.setAttribute("data-id", cardId);
-			showEditForm(cardId);
-			break;
-		default:
-			openModelCard(cardId);
-			break;
-	}	
-	// if(e.target.parentElement.dataset.action === "delete"){
-	// 	deleteCat(cardId, card);
-	// } else if(e.target.parentElement.dataset.action === "edit"){
-	// 	popupEdit.classList.add("active");
-	// 	editForm.setAttribute("data-id", cardId);
-	//  	showEditForm(cardId);
-	// }
-	// if(e.target.dataset.action = "open"){ 
-	// 	openModelCard(cardId);
-	// }
+	if(e.target.parentElement.dataset.action === "delete"){
+		deleteCat(cardId, card);
+	} else if(e.target.parentElement.dataset.action === "edit"){
+		popupEdit.classList.add("active");
+		editForm.setAttribute("data-id", cardId);
+	 	showEditForm(cardId);
+	}
 })
 
 const setCards = function(arr) {
