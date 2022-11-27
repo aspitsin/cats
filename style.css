@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+}
+
+.header-container {
+    padding: 20px;
+    max-width: 1280px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-btns {
+
+}
+
+#add {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #DDDDDD;
+    border: 1px solid white;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+#add:hover {
+
+} 
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    margin-top:80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    width: 320px;
+    padding: 10px;
+    background-color: white;
+    gap: 10px;
+    font-size: 15px;
+    position: relative;
+}
+
+.card h3, p {
+    font-size: inherit;
+}
+
+.card_img {
+    height: 200px;
+    width: 100%;
+    background-image: url('https://meow.senither.com/c/gRmGNwD.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.card .heart {
+    top: 0;
+    right: 0;
+    padding: 20px;
+    font-size: 20px;
+    position: absolute;
+}
+
+.card .heart:hover {
+    color: red;
+}
+
+.card-content {
+    display: flex;
+}
+.card-content h3 {
+    padding-left: 10px;
+    margin-right: auto;
+}
+
+.del_btn, .edit_btn {
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    margin-right: 5px;
+    padding: 10px;
+    transition: 0.5s;
+    font-size: inherit;
+}
+
+.del_btn:hover, .edit_btn:hover{
+    color: #DDDDDD;
+}
+
+.popup-add, .popup-edit {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0008;
+    backdrop-filter: blur(1px);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.popup-add.active {
+    display: flex;
+}
+
+.popup-edit.active {
+    display: flex;
+}
+
+
+.popup_content {
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    position: relative;
+    border-radius: 10px;
+    
+}
+
+#addForm, #editForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.addForm_header, .updForm_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0008;
+    backdrop-filter: blur(1px);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal-wrapper.active {
+    display: flex;
+}
+
+.modal_card {
+    width: 600px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 20px;
+}
+
+.modal_image {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.modal_close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    font-size: 20px;
+}
+
+
+form label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    gap: 5px;
+    padding-left: 5px;
+}
+
+
+form input,
+form select {
+    font-size: 18px;
+    height: 30px;
+    padding: 0 10px 0 10px;
+    border-radius: 15px;
+    border: none;
+}
+
+form input:disabled{
+    background-color: #DDDDDD;
+}
+
+form textarea {
+    font-size: 18px;
+    height: 50px;
+    padding: 0 10px 0 10px;
+    border-radius: 15px;
+    border: none;
+}
+
+form .popup_close {
+    font-size: 20px;
+}
+
+.form_submit {
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    color: #fff;
+    background-color: #23a030;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 16px 36px rgb(52 213 68 / 22%);
+    padding: 15px;
+}
+
