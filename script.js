@@ -6,7 +6,6 @@ const popupEdit = document.querySelector(".popup-edit");
 const editForm = document.forms.editForm;
 const cards = document.getElementsByClassName("card");
 let cats;
-let counter = 0;
 
 const createModalCardHtml = function(cat){
 	return `
@@ -54,9 +53,15 @@ const createCard = function(cat, parent) {
 		img.style.backgroundColor = "transparent";
 	}
 
-	// const favourite = document.createElement("i");
-	// favourite.className = "far fa-heart heart";
-	// favourite.setAttribute("data-action", "favourite");
+	const favourite = document.createElement("i");
+	favourite.className = "fas fa-heart heart";
+	favourite.setAttribute("data-action", "favourite");
+	console.log(cat.favourite)
+	if (cat.favourite === true){
+		favourite.classList.add("active")
+	} else {
+		favourite.classList.remove("active")
+	}
 
 	const name = document.createElement("h3");
 	name.innerText = cat.name;
@@ -76,7 +81,7 @@ const createCard = function(cat, parent) {
 	cardContent.className = "card-content";
 
 	cardContent.append(name, del, edit)
-	card.append(img, cardContent)
+	card.append(img, favourite, cardContent)
 	parent.append(card);
 }
 
@@ -90,6 +95,8 @@ container.addEventListener("click", function(e){
 		popupEdit.classList.add("active");
 		editForm.setAttribute("data-id", cardId);
 	 	showEditForm(cardId);
+	} else if (e.target.dataset.action === "favourite"){
+		turnFavourite(cardId);
 	} else {
 		openModelCard(cardId);
 	}
@@ -150,7 +157,6 @@ const deleteCat = function(id,tag){
     })
 }
 
-
 popupAdd.querySelector(".popup_close").addEventListener("click", function(e){
     popupAdd.classList.remove("active");
 })
@@ -162,7 +168,7 @@ popupEdit.querySelector(".popup_close").addEventListener("click", function(e){
 
 document.querySelector("#add").addEventListener("click", function(e) {
 	e.preventDefault();
-	counter = counter + 1
+	let counter = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
 	addForm.elements.id.value = counter; 
     popupAdd.classList.add("active");
 
@@ -194,7 +200,6 @@ editForm.addEventListener("submit", function(e) {
 	editCat(body, editForm.dataset.id);
 });
 
-
 const editCat = async function(obj,id){
 	let res = await fetch(`https://sb-cats.herokuapp.com/api/2/aspitsin/update/${id}`, {
 		method: "PUT",
@@ -219,7 +224,35 @@ const editCat = async function(obj,id){
 	}
 }
 
+const turnFavourite = async function(id){
+	let data = JSON.parse(localStorage.getItem("catArr")).filter((el) => el.id === id)[0];
+	
+	if(data.favourite === false){
+		data.favourite = true;
+	} else {
+		data.favourite = false;
+	}
 
+	let res = await fetch(`https://sb-cats.herokuapp.com/api/2/aspitsin/update/${id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data)
+	})
+	let answer = await res.json();
+	if (answer.message === "ok") {
+		cats = cats.map(el => {
+            if (+el.id === +id) {
+                return {...el, ...data};
+            } else {
+                return el;
+            }
+        });
+		localStorage.setItem("catArr", JSON.stringify(cats));
+		setCards(cats);
+	}
+}
 
 cats = localStorage.getItem("catArr");
 if (cats) {
@@ -236,17 +269,3 @@ if (cats) {
 		}
 	});
 }
-
-// const heart = document.querySelector('.heart');
-// heart.addEventListener("mousemove", function(e){
-// 	heart.classList.add('fas');
-// 	heart.classList.remove('far');
-// 	heart.addEventListener("mouseout", function(e){
-// 		heart.classList.add('far');
-// 		heart.classList.remove('fas');
-// 	}) 
-// })
-
-// const checkFavourite = function(cardId){
-
-// }
