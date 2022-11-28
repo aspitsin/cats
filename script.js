@@ -80,11 +80,15 @@ const createCard = function(cat, parent) {
 }
 
 container.addEventListener("click", function(e){
-	const card = e.target.closest('[data-card_id]');
-	const cardId = card.dataset.card_id;
+	const cardWr = e.target.closest('[data-card_id]');
+	const cardId = cardWr.dataset.card_id;
 
 	if(e.target.parentElement.dataset.action === "delete"){
-		deleteCat(cardId, card);
+		const cardWr = e.target.closest('[data-card_id]');
+		const cardId = cardWr.dataset.card_id;
+
+		deleteCat(cardId, cardWr);
+		cardWr.remove()
 	} else if(e.target.parentElement.dataset.action === "edit"){
 		popupEdit.classList.add("active");
 		editForm.setAttribute("data-id", cardId);
