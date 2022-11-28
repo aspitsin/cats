@@ -161,7 +161,7 @@ popupEdit.querySelector(".popup_close").addEventListener("click", function(e){
 
 document.querySelector("#add").addEventListener("click", function(e) {
 	e.preventDefault();
-	addForm.elements.id.value = cats.length + 1; 
+	addForm.elements.id.value = cats.length + 11; 
     popupAdd.classList.add("active");
 
 })
