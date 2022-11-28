@@ -6,6 +6,7 @@ const popupEdit = document.querySelector(".popup-edit");
 const editForm = document.forms.editForm;
 const cards = document.getElementsByClassName("card");
 let cats;
+let counter = 0;
 
 const createModalCardHtml = function(cat){
 	return `
@@ -161,7 +162,8 @@ popupEdit.querySelector(".popup_close").addEventListener("click", function(e){
 
 document.querySelector("#add").addEventListener("click", function(e) {
 	e.preventDefault();
-	addForm.elements.id.value = cats.length + 11; 
+	counter = counter + 1
+	addForm.elements.id.value = counter; 
     popupAdd.classList.add("active");
 
 })
