@@ -84,15 +84,13 @@ container.addEventListener("click", function(e){
 	const cardId = cardWr.dataset.card_id;
 
 	if(e.target.parentElement.dataset.action === "delete"){
-		const cardWr = e.target.closest('[data-card_id]');
-		const cardId = cardWr.dataset.card_id;
-
 		deleteCat(cardId, cardWr);
-		cardWr.remove()
 	} else if(e.target.parentElement.dataset.action === "edit"){
 		popupEdit.classList.add("active");
 		editForm.setAttribute("data-id", cardId);
 	 	showEditForm(cardId);
+	} else {
+		openModelCard(cardId);
 	}
 })
 
@@ -138,7 +136,7 @@ const addCat = function(cat) {
 }
 
 const deleteCat = function(id,tag){
-    fetch(`http://sb-cats.herokuapp.com/api/2/aspitsin/delete/${id}`, {
+    fetch(`https://sb-cats.herokuapp.com/api/2/aspitsin/delete/${id}`, {
         method: "DELETE"
     })
     .then(res => res.json())
